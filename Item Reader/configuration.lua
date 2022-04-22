@@ -96,6 +96,19 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
+            if imgui.Checkbox("Hide when menus are open", _configuration.aio.HideWhenMenu) then
+                _configuration.aio.HideWhenMenu = not _configuration.aio.HideWhenMenu
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when symbol chat/world select is open", _configuration.aio.HideWhenSymbolChat) then
+                _configuration.aio.HideWhenSymbolChat = not _configuration.aio.HideWhenSymbolChat
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when the menu is unavailable", _configuration.aio.HideWhenMenuUnavailable) then
+                _configuration.aio.HideWhenMenuUnavailable = not _configuration.aio.HideWhenMenuUnavailable
+                this.changed = true
+            end
+
             if imgui.Checkbox("No title bar", _configuration.aio.NoTitleBar == "NoTitleBar") then
                 if _configuration.aio.NoTitleBar == "NoTitleBar" then
                     _configuration.aio.NoTitleBar = ""
@@ -195,6 +208,19 @@ local function ConfigurationWindow(configuration)
             if imgui.Checkbox("Enable", _configuration.floor.EnableWindow) then
                 _configuration.floor.EnableWindow = not _configuration.floor.EnableWindow
                 _configuration.floor.changed = true
+                this.changed = true
+            end
+
+            if imgui.Checkbox("Hide when menus are open", _configuration.floor.HideWhenMenu) then
+                _configuration.floor.HideWhenMenu = not _configuration.floor.HideWhenMenu
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when symbol chat/world select is open", _configuration.floor.HideWhenSymbolChat) then
+                _configuration.floor.HideWhenSymbolChat = not _configuration.floor.HideWhenSymbolChat
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when the menu is unavailable", _configuration.floor.HideWhenMenuUnavailable) then
+                _configuration.floor.HideWhenMenuUnavailable = not _configuration.floor.HideWhenMenuUnavailable
                 this.changed = true
             end
 
@@ -467,6 +493,19 @@ local function ConfigurationWindow(configuration)
             if imgui.Checkbox("Enable", _configuration.mags.EnableWindow) then
                 _configuration.mags.EnableWindow = not _configuration.mags.EnableWindow
                 _configuration.mags.changed = true
+                this.changed = true
+            end
+
+            if imgui.Checkbox("Hide when menus are open", _configuration.mags.HideWhenMenu) then
+                _configuration.mags.HideWhenMenu = not _configuration.mags.HideWhenMenu
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when symbol chat/world select is open", _configuration.mags.HideWhenSymbolChat) then
+                _configuration.mags.HideWhenSymbolChat = not _configuration.mags.HideWhenSymbolChat
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when the menu is unavailable", _configuration.mags.HideWhenMenuUnavailable) then
+                _configuration.mags.HideWhenMenuUnavailable = not _configuration.mags.HideWhenMenuUnavailable
                 this.changed = true
             end
 

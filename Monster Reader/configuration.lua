@@ -49,6 +49,19 @@ local function ConfigurationWindow(configuration)
                 this.changed = true
             end
 
+            if imgui.Checkbox("Hide when menus are open", _configuration.mhpHideWhenMenu) then
+                _configuration.mhpHideWhenMenu = not _configuration.mhpHideWhenMenu
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when symbol chat/world select is open", _configuration.mhpHideWhenSymbolChat) then
+                _configuration.mhpHideWhenSymbolChat = not _configuration.mhpHideWhenSymbolChat
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when the menu is unavailable", _configuration.mhpHideWhenMenuUnavailable) then
+                _configuration.mhpHideWhenMenuUnavailable = not _configuration.mhpHideWhenMenuUnavailable
+                this.changed = true
+            end
+
             if imgui.Checkbox("No title bar", _configuration.mhpNoTitleBar == "NoTitleBar") then
                 if _configuration.mhpNoTitleBar == "NoTitleBar" then
                     _configuration.mhpNoTitleBar = ""
@@ -128,6 +141,19 @@ local function ConfigurationWindow(configuration)
         if imgui.TreeNodeEx("Target") then
             if imgui.Checkbox("Enable", _configuration.targetEnableWindow) then
                 _configuration.targetEnableWindow = not _configuration.targetEnableWindow
+                this.changed = true
+            end
+
+            if imgui.Checkbox("Hide when menus are open", _configuration.targetHideWhenMenu) then
+                _configuration.targetHideWhenMenu = not _configuration.targetHideWhenMenu
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when symbol chat/world select is open", _configuration.targetHideWhenSymbolChat) then
+                _configuration.targetHideWhenSymbolChat = not _configuration.targetHideWhenSymbolChat
+                this.changed = true
+            end
+            if imgui.Checkbox("Hide when the menu is unavailable", _configuration.targetHideWhenMenuUnavailable) then
+                _configuration.targetHideWhenMenuUnavailable = not _configuration.targetHideWhenMenuUnavailable
                 this.changed = true
             end
 

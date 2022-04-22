@@ -3,6 +3,7 @@ local lib_helpers = require("solylib.helpers")
 local lib_characters = require("solylib.characters")
 local lib_unitxt = require("solylib.unitxt")
 local lib_items = require("solylib.items.items")
+local lib_menu = require("solylib.menu")
 local cfg = require("Monster Reader.configuration")
 local cfgMonsters = require("Monster Reader.monsters")
 local optionsLoaded, options = pcall(require, "Monster Reader.options")
@@ -20,35 +21,41 @@ if optionsLoaded then
     options.showMonsterStatus         = lib_helpers.NotNilOrDefault(options.showMonsterStatus, false)
     options.showMonsterID             = lib_helpers.NotNilOrDefault(options.showMonsterID, false)
 
-    options.mhpEnableWindow      = lib_helpers.NotNilOrDefault(options.mhpEnableWindow, true)
-    options.mhpChanged           = lib_helpers.NotNilOrDefault(options.mhpChanged, false)
-    options.mhpAnchor            = lib_helpers.NotNilOrDefault(options.mhpAnchor, 1)
-    options.mhpX                 = lib_helpers.NotNilOrDefault(options.mhpX, 50)
-    options.mhpY                 = lib_helpers.NotNilOrDefault(options.mhpY, 50)
-    options.mhpW                 = lib_helpers.NotNilOrDefault(options.mhpW, 450)
-    options.mhpH                 = lib_helpers.NotNilOrDefault(options.mhpH, 350)
-    options.mhpNoTitleBar        = lib_helpers.NotNilOrDefault(options.mhpNoTitleBar, "")
-    options.mhpNoResize          = lib_helpers.NotNilOrDefault(options.mhpNoResize, "")
-    options.mhpNoMove            = lib_helpers.NotNilOrDefault(options.mhpNoMove, "")
-    options.mhpTransparentWindow = lib_helpers.NotNilOrDefault(options.mhpTransparentWindow, false)
+    options.mhpEnableWindow            = lib_helpers.NotNilOrDefault(options.mhpEnableWindow, true)
+    options.mhpChanged                 = lib_helpers.NotNilOrDefault(options.mhpChanged, false)
+    options.mhpAnchor                  = lib_helpers.NotNilOrDefault(options.mhpAnchor, 1)
+    options.mhpX                       = lib_helpers.NotNilOrDefault(options.mhpX, 50)
+    options.mhpY                       = lib_helpers.NotNilOrDefault(options.mhpY, 50)
+    options.mhpW                       = lib_helpers.NotNilOrDefault(options.mhpW, 450)
+    options.mhpH                       = lib_helpers.NotNilOrDefault(options.mhpH, 350)
+    options.mhpNoTitleBar              = lib_helpers.NotNilOrDefault(options.mhpNoTitleBar, "")
+    options.mhpNoResize                = lib_helpers.NotNilOrDefault(options.mhpNoResize, "")
+    options.mhpNoMove                  = lib_helpers.NotNilOrDefault(options.mhpNoMove, "")
+    options.mhpTransparentWindow       = lib_helpers.NotNilOrDefault(options.mhpTransparentWindow, false)
+    options.mhpHideWhenMenu            = lib_helpers.NotNilOrDefault(options.mhpHideWhenMenu, true)
+    options.mhpHideWhenSymbolChat      = lib_helpers.NotNilOrDefault(options.mhpHideWhenSymbolChat, true)
+    options.mhpHideWhenMenuUnavailable = lib_helpers.NotNilOrDefault(options.mhpHideWhenMenuUnavailable, true)
 
-    options.targetEnableWindow          = lib_helpers.NotNilOrDefault(options.targetEnableWindow, true)
-    options.targetChanged               = lib_helpers.NotNilOrDefault(options.targetChanged, false)
-    options.targetAnchor                = lib_helpers.NotNilOrDefault(options.targetAnchor, 3)
-    options.targetX                     = lib_helpers.NotNilOrDefault(options.targetX, 150)
-    options.targetY                     = lib_helpers.NotNilOrDefault(options.targetY, -45)
-    options.targetW                     = lib_helpers.NotNilOrDefault(options.targetW, 120)
-    options.targetH                     = lib_helpers.NotNilOrDefault(options.targetH, 85)
-    options.targetNoTitleBar            = lib_helpers.NotNilOrDefault(options.targetNoTitleBar, "NoTitleBar")
-    options.targetNoResize              = lib_helpers.NotNilOrDefault(options.targetNoResize, "NoResize")
-    options.targetNoMove                = lib_helpers.NotNilOrDefault(options.targetNoMove, "NoMove")
-    options.targetNoScrollbar           = lib_helpers.NotNilOrDefault(options.targetNoScrollbar, "NoScrollbar")
-    options.targetTransparentWindow     = lib_helpers.NotNilOrDefault(options.targetTransparentWindow, false)
-    options.targetShowMonsterName       = lib_helpers.NotNilOrDefault(options.targetShowMonsterName, false)
-    options.targetShowMonsterStats      = lib_helpers.NotNilOrDefault(options.targetShowMonsterStats, false)
-    options.targetShowAccuracyAssist    = lib_helpers.NotNilOrDefault(options.targetShowAccuracyAssist, false)
-    options.targetAccuracyThreshold     = lib_helpers.NotNilOrDefault(options.targetAccuracyThreshold, 90)
-    options.targetEnableActivationRates = lib_helpers.NotNilOrDefault(options.targetEnableActivationRates, false)
+    options.targetEnableWindow            = lib_helpers.NotNilOrDefault(options.targetEnableWindow, true)
+    options.targetChanged                 = lib_helpers.NotNilOrDefault(options.targetChanged, false)
+    options.targetAnchor                  = lib_helpers.NotNilOrDefault(options.targetAnchor, 3)
+    options.targetX                       = lib_helpers.NotNilOrDefault(options.targetX, 150)
+    options.targetY                       = lib_helpers.NotNilOrDefault(options.targetY, -45)
+    options.targetW                       = lib_helpers.NotNilOrDefault(options.targetW, 120)
+    options.targetH                       = lib_helpers.NotNilOrDefault(options.targetH, 85)
+    options.targetNoTitleBar              = lib_helpers.NotNilOrDefault(options.targetNoTitleBar, "NoTitleBar")
+    options.targetNoResize                = lib_helpers.NotNilOrDefault(options.targetNoResize, "NoResize")
+    options.targetNoMove                  = lib_helpers.NotNilOrDefault(options.targetNoMove, "NoMove")
+    options.targetNoScrollbar             = lib_helpers.NotNilOrDefault(options.targetNoScrollbar, "NoScrollbar")
+    options.targetTransparentWindow       = lib_helpers.NotNilOrDefault(options.targetTransparentWindow, false)
+    options.targetHideWhenMenu            = lib_helpers.NotNilOrDefault(options.targetHideWhenMenu, true)
+    options.targetHideWhenSymbolChat      = lib_helpers.NotNilOrDefault(options.targetHideWhenSymbolChat, true)
+    options.targetHideWhenMenuUnavailable = lib_helpers.NotNilOrDefault(options.targetHideWhenMenuUnavailable, true)
+    options.targetShowMonsterName         = lib_helpers.NotNilOrDefault(options.targetShowMonsterName, false)
+    options.targetShowMonsterStats        = lib_helpers.NotNilOrDefault(options.targetShowMonsterStats, false)
+    options.targetShowAccuracyAssist      = lib_helpers.NotNilOrDefault(options.targetShowAccuracyAssist, false)
+    options.targetAccuracyThreshold       = lib_helpers.NotNilOrDefault(options.targetAccuracyThreshold, 90)
+    options.targetEnableActivationRates   = lib_helpers.NotNilOrDefault(options.targetEnableActivationRates, false)
     
     if options.targetEnableActivationRateItems == nil or type(options.targetEnableActivationRateItems) ~= "table" then
         options.targetEnableActivationRateItems = {}
@@ -81,6 +88,9 @@ else
         mhpNoResize = "",
         mhpNoMove = "",
         mhpTransparentWindow = false,
+        mhpHideWhenMenu = false,
+        mhpHideWhenSymbolChat = false,
+        mhpHideWhenMenuUnavailable = false,
 
         targetEnableWindow = true,
         targetChanged = false,
@@ -94,6 +104,9 @@ else
         targetNoMove = "NoMove",
         targetNoScrollbar = "NoScrollbar",
         targetTransparentWindow = false,
+        targetHideWhenMenu = false,
+        targetHideWhenSymbolChat = false,
+        targetHideWhenMenuUnavailable = false,
         targetShowMonsterName = true,
         targetShowMonsterStats = true,
         targetShowAccuracyAssist = false,
@@ -136,6 +149,9 @@ local function SaveOptions(options)
         io.write(string.format("    mhpNoResize = \"%s\",\n", options.mhpNoResize))
         io.write(string.format("    mhpNoMove = \"%s\",\n", options.mhpNoMove))
         io.write(string.format("    mhpTransparentWindow = %s,\n", tostring(options.mhpTransparentWindow)))
+        io.write(string.format("    mhpHideWhenMenu = %s,\n", tostring(options.mhpHideWhenMenu)))
+        io.write(string.format("    mhpHideWhenSymbolChat = %s,\n", tostring(options.mhpHideWhenSymbolChat)))
+        io.write(string.format("    mhpHideWhenMenuUnavailable = %s,\n", tostring(options.mhpHideWhenMenuUnavailable)))
         io.write("\n")
         io.write(string.format("    targetEnableWindow = %s,\n", tostring(options.targetEnableWindow)))
         io.write(string.format("    targetChanged = %s,\n", tostring(options.targetChanged)))
@@ -149,6 +165,9 @@ local function SaveOptions(options)
         io.write(string.format("    targetNoMove = \"%s\",\n", options.targetNoMove))
         io.write(string.format("    targetNoScrollbar = \"%s\",\n", options.targetNoScrollbar))
         io.write(string.format("    targetTransparentWindow = %s,\n", tostring(options.targetTransparentWindow)))
+        io.write(string.format("    targetHideWhenMenu = %s,\n", tostring(options.targetHideWhenMenu)))
+        io.write(string.format("    targetHideWhenSymbolChat = %s,\n", tostring(options.targetHideWhenSymbolChat)))
+        io.write(string.format("    targetHideWhenMenuUnavailable = %s,\n", tostring(options.targetHideWhenMenuUnavailable)))
         io.write(string.format("    targetShowMonsterName = %s,\n", tostring(options.targetShowMonsterName)))
         io.write(string.format("    targetShowMonsterStats = %s,\n", tostring(options.targetShowMonsterStats)))
         io.write(string.format("    targetShowAccuracyAssist = %s,\n", tostring(options.targetShowAccuracyAssist)))
@@ -847,7 +866,11 @@ local function PresentTargetMonsterWindow()
         targetCache = monster
     end
 
-    if options.targetEnableWindow and monster.unitxtID ~= 0 then
+    if (options.targetEnableWindow and monster.unitxtID ~= 0)
+        and (options.targetHideWhenMenu == false or lib_menu.IsMenuOpen() == false)
+        and (options.targetHideWhenSymbolChat == false or lib_menu.IsSymbolChatOpen() == false)
+        and (options.targetHideWhenMenuUnavailable == false or lib_menu.IsMenuUnavailable() == false)
+    then
         if firstPresent or options.targetChanged then
           options.targetChanged = false
           local ps = lib_helpers.GetPosBySizeAndAnchor(options.targetX, options.targetY, options.targetW, options.targetH, options.targetAnchor)
@@ -889,7 +912,11 @@ local function present()
         return
     end
 
-    if options.mhpEnableWindow then
+    if (options.mhpEnableWindow == true)
+        and (options.mhpHideWhenMenu == false or lib_menu.IsMenuOpen() == false)
+        and (options.mhpHideWhenSymbolChat == false or lib_menu.IsSymbolChatOpen() == false)
+        and (options.mhpHideWhenMenuUnavailable == false or lib_menu.IsMenuUnavailable() == false)
+    then
         if firstPresent or options.mhpChanged then
             options.mhpChanged = false
             local ps = lib_helpers.GetPosBySizeAndAnchor(options.mhpX, options.mhpY, options.mhpW, options.mhpH, options.mhpAnchor)

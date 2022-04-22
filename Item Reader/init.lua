@@ -1,6 +1,7 @@
 local core_mainmenu = require("core_mainmenu")
 local lib_helpers = require("solylib.helpers")
 local lib_characters = require("solylib.characters")
+local lib_menu = require("solylib.menu")
 local lib_unitxt = require("solylib.unitxt")
 local lib_items = require("solylib.items.items")
 local lib_items_list = require("solylib.items.items_list")
@@ -33,38 +34,44 @@ if optionsLoaded then
     if options.aio == nil or type(options.aio) ~= "table" then
         options.aio = {}
     end
-    options.aio.EnableWindow         = lib_helpers.NotNilOrDefault(options.aio.EnableWindow, true)
-    options.aio.changed              = lib_helpers.NotNilOrDefault(options.aio.changed, true)
-    options.aio.Anchor               = lib_helpers.NotNilOrDefault(options.aio.Anchor, 1)
-    options.aio.X                    = lib_helpers.NotNilOrDefault(options.aio.X, 50)
-    options.aio.Y                    = lib_helpers.NotNilOrDefault(options.aio.Y, 5)
-    options.aio.W                    = lib_helpers.NotNilOrDefault(options.aio.W, 450)
-    options.aio.H                    = lib_helpers.NotNilOrDefault(options.aio.H, 350)
-    options.aio.NoTitleBar           = lib_helpers.NotNilOrDefault(options.aio.NoTitleBar, "")
-    options.aio.NoResize             = lib_helpers.NotNilOrDefault(options.aio.NoResize, "")
-    options.aio.NoMove               = lib_helpers.NotNilOrDefault(options.aio.NoMove, "")
-    options.aio.AlwaysAutoResize     = lib_helpers.NotNilOrDefault(options.aio.AlwaysAutoResize, "")
-    options.aio.TransparentWindow    = lib_helpers.NotNilOrDefault(options.aio.TransparentWindow, false)
-    options.aio.ShowButtonSaveToFile = lib_helpers.NotNilOrDefault(options.aio.ShowButtonSaveToFile, true)
-    options.aio.SelectedInventory    = lib_helpers.NotNilOrDefault(options.aio.SelectedInventory, 1)
+    options.aio.EnableWindow            = lib_helpers.NotNilOrDefault(options.aio.EnableWindow, true) 
+    options.aio.HideWhenMenu            = lib_helpers.NotNilOrDefault(options.aio.HideWhenMenu, true)
+    options.aio.HideWhenSymbolChat      = lib_helpers.NotNilOrDefault(options.aio.HideWhenSymbolChat, true)
+    options.aio.HideWhenMenuUnavailable = lib_helpers.NotNilOrDefault(options.aio.HideWhenMenuUnavailable, true)
+    options.aio.changed                 = lib_helpers.NotNilOrDefault(options.aio.changed, true)
+    options.aio.Anchor                  = lib_helpers.NotNilOrDefault(options.aio.Anchor, 1)
+    options.aio.X                       = lib_helpers.NotNilOrDefault(options.aio.X, 50)
+    options.aio.Y                       = lib_helpers.NotNilOrDefault(options.aio.Y, 5)
+    options.aio.W                       = lib_helpers.NotNilOrDefault(options.aio.W, 450)
+    options.aio.H                       = lib_helpers.NotNilOrDefault(options.aio.H, 350)
+    options.aio.NoTitleBar              = lib_helpers.NotNilOrDefault(options.aio.NoTitleBar, "")
+    options.aio.NoResize                = lib_helpers.NotNilOrDefault(options.aio.NoResize, "")
+    options.aio.NoMove                  = lib_helpers.NotNilOrDefault(options.aio.NoMove, "")
+    options.aio.AlwaysAutoResize        = lib_helpers.NotNilOrDefault(options.aio.AlwaysAutoResize, "")
+    options.aio.TransparentWindow       = lib_helpers.NotNilOrDefault(options.aio.TransparentWindow, false)
+    options.aio.ShowButtonSaveToFile    = lib_helpers.NotNilOrDefault(options.aio.ShowButtonSaveToFile, true)
+    options.aio.SelectedInventory       = lib_helpers.NotNilOrDefault(options.aio.SelectedInventory, 1)
 
     if options.floor == nil or type(options.floor) ~= "table" then
         options.floor = {}
     end
-    options.floor.EnableWindow       = lib_helpers.NotNilOrDefault(options.floor.EnableWindow, true)
-    options.floor.changed            = lib_helpers.NotNilOrDefault(options.floor.changed, true)
-    options.floor.Anchor             = lib_helpers.NotNilOrDefault(options.floor.Anchor, 1)
-    options.floor.X                  = lib_helpers.NotNilOrDefault(options.floor.X, 50)
-    options.floor.Y                  = lib_helpers.NotNilOrDefault(options.floor.Y, 50)
-    options.floor.W                  = lib_helpers.NotNilOrDefault(options.floor.W, 450)
-    options.floor.H                  = lib_helpers.NotNilOrDefault(options.floor.H, 350)
-    options.floor.NoTitleBar         = lib_helpers.NotNilOrDefault(options.floor.NoTitleBar, "")
-    options.floor.NoResize           = lib_helpers.NotNilOrDefault(options.floor.NoResize, "")
-    options.floor.NoMove             = lib_helpers.NotNilOrDefault(options.floor.NoMove, "")
-    options.floor.AlwaysAutoResize   = lib_helpers.NotNilOrDefault(options.floor.AlwaysAutoResize, "")
-    options.floor.TransparentWindow  = lib_helpers.NotNilOrDefault(options.floor.TransparentWindow, false)
+    options.floor.EnableWindow            = lib_helpers.NotNilOrDefault(options.floor.EnableWindow, true)
+    options.floor.HideWhenMenu            = lib_helpers.NotNilOrDefault(options.aio.HideWhenMenu, true)
+    options.floor.HideWhenSymbolChat      = lib_helpers.NotNilOrDefault(options.aio.HideWhenSymbolChat, true)
+    options.floor.HideWhenMenuUnavailable = lib_helpers.NotNilOrDefault(options.aio.HideWhenMenuUnavailable, true)
+    options.floor.changed                 = lib_helpers.NotNilOrDefault(options.floor.changed, true)
+    options.floor.Anchor                  = lib_helpers.NotNilOrDefault(options.floor.Anchor, 1)
+    options.floor.X                       = lib_helpers.NotNilOrDefault(options.floor.X, 50)
+    options.floor.Y                       = lib_helpers.NotNilOrDefault(options.floor.Y, 50)
+    options.floor.W                       = lib_helpers.NotNilOrDefault(options.floor.W, 450)
+    options.floor.H                       = lib_helpers.NotNilOrDefault(options.floor.H, 350)
+    options.floor.NoTitleBar              = lib_helpers.NotNilOrDefault(options.floor.NoTitleBar, "")
+    options.floor.NoResize                = lib_helpers.NotNilOrDefault(options.floor.NoResize, "")
+    options.floor.NoMove                  = lib_helpers.NotNilOrDefault(options.floor.NoMove, "")
+    options.floor.AlwaysAutoResize        = lib_helpers.NotNilOrDefault(options.floor.AlwaysAutoResize, "")
+    options.floor.TransparentWindow       = lib_helpers.NotNilOrDefault(options.floor.TransparentWindow, false)
     options.floor.ShowInvMesetaAndItemCount = lib_helpers.NotNilOrDefault(options.floor.ShowInvMesetaAndItemCount, false)
-    options.floor.EnableFilters      = lib_helpers.NotNilOrDefault(options.floor.EnableFilters, false)
+    options.floor.EnableFilters           = lib_helpers.NotNilOrDefault(options.floor.EnableFilters, false)
 
     if options.floor.filter == nil or type(options.floor.filter) ~= "table" then
         options.floor.filter = {}
@@ -99,17 +106,20 @@ if optionsLoaded then
     if options.mags == nil or type(options.mags) ~= "table" then
         options.mags = {}
     end
-    options.mags.EnableWindow        = lib_helpers.NotNilOrDefault(options.mags.EnableWindow, true)
-    options.mags.changed             = lib_helpers.NotNilOrDefault(options.mags.changed, true)
-    options.mags.Anchor              = lib_helpers.NotNilOrDefault(options.mags.Anchor, 1)
-    options.mags.X                   = lib_helpers.NotNilOrDefault(options.mags.X, 50)
-    options.mags.Y                   = lib_helpers.NotNilOrDefault(options.mags.Y, 50)
-    options.mags.W                   = lib_helpers.NotNilOrDefault(options.mags.W, 450)
-    options.mags.H                   = lib_helpers.NotNilOrDefault(options.mags.H, 350)
-    options.mags.NoTitleBar          = lib_helpers.NotNilOrDefault(options.mags.NoTitleBar, "")
-    options.mags.NoResize            = lib_helpers.NotNilOrDefault(options.mags.NoResize, "")
-    options.mags.NoMove              = lib_helpers.NotNilOrDefault(options.mags.NoMove, "")
-    options.mags.TransparentWindow   = lib_helpers.NotNilOrDefault(options.mags.TransparentWindow, false)
+    options.mags.EnableWindow            = lib_helpers.NotNilOrDefault(options.mags.EnableWindow, true)
+    options.mags.HideWhenMenu            = lib_helpers.NotNilOrDefault(options.mags.HideWhenMenu, true)
+    options.mags.HideWhenSymbolChat      = lib_helpers.NotNilOrDefault(options.mags.HideWhenSymbolChat, true)
+    options.mags.HideWhenMenuUnavailable = lib_helpers.NotNilOrDefault(options.mags.HideWhenMenuUnavailable, true)
+    options.mags.changed                 = lib_helpers.NotNilOrDefault(options.mags.changed, true)
+    options.mags.Anchor                  = lib_helpers.NotNilOrDefault(options.mags.Anchor, 1)
+    options.mags.X                       = lib_helpers.NotNilOrDefault(options.mags.X, 50)
+    options.mags.Y                       = lib_helpers.NotNilOrDefault(options.mags.Y, 50)
+    options.mags.W                       = lib_helpers.NotNilOrDefault(options.mags.W, 450)
+    options.mags.H                       = lib_helpers.NotNilOrDefault(options.mags.H, 350)
+    options.mags.NoTitleBar              = lib_helpers.NotNilOrDefault(options.mags.NoTitleBar, "")
+    options.mags.NoResize                = lib_helpers.NotNilOrDefault(options.mags.NoResize, "")
+    options.mags.NoMove                  = lib_helpers.NotNilOrDefault(options.mags.NoMove, "")
+    options.mags.TransparentWindow       = lib_helpers.NotNilOrDefault(options.mags.TransparentWindow, false)
 else
     options =
     {
@@ -130,6 +140,9 @@ else
         server = 1,
         aio = {
             EnableWindow = true,
+            HideWhenMenu = false,
+            HideWhenSymbolChat = false,
+            HideWhenMenuUnavailable = false,
             changed = true,
             Anchor = 1,
             X = 50,
@@ -146,6 +159,9 @@ else
         },
         floor = {
             EnableWindow = true,
+            HideWhenMenu = false,
+            HideWhenSymbolChat = false,
+            HideWhenMenuUnavailable = false,
             changed = true,
             Anchor = 1,
             X = 50,
@@ -189,6 +205,9 @@ else
         },
         mags = {
             EnableWindow = true,
+            HideWhenMenu = false,
+            HideWhenSymbolChat = false,
+            HideWhenMenuUnavailable = false,
             changed = true,
             Anchor = 1,
             X = 50,
@@ -231,6 +250,9 @@ local function SaveOptions(options)
         io.write(string.format("    updateThrottle = %i,\n", tostring(options.updateThrottle)))
         io.write(string.format("    aio = {\n"))
         io.write(string.format("        EnableWindow = %s,\n", tostring(options.aio.EnableWindow)))
+        io.write(string.format("        HideWhenMenu = %s,\n", tostring(options.aio.HideWhenMenu)))
+        io.write(string.format("        HideWhenSymbolChat = %s,\n",tostring(options.aio.HideWhenSymbolChat)))
+        io.write(string.format("        HideWhenMenuUnavailable = %s,\n", tostring(options.aio.HideWhenMenuUnavailable)))
         io.write(string.format("        Anchor = %i,\n", options.aio.Anchor))
         io.write(string.format("        X = %i,\n", options.aio.X))
         io.write(string.format("        Y = %i,\n", options.aio.Y))
@@ -246,6 +268,9 @@ local function SaveOptions(options)
         io.write(string.format("    },\n"))
         io.write(string.format("    floor = {\n"))
         io.write(string.format("        EnableWindow = %s,\n", tostring(options.floor.EnableWindow)))
+        io.write(string.format("        HideWhenMenu = %s,\n", tostring(options.floor.HideWhenMenu)))
+        io.write(string.format("        HideWhenSymbolChat = %s,\n",tostring(options.floor.HideWhenSymbolChat)))
+        io.write(string.format("        HideWhenMenuUnavailable = %s,\n", tostring(options.floor.HideWhenMenuUnavailable)))
         io.write(string.format("        Anchor = %i,\n", options.floor.Anchor))
         io.write(string.format("        X = %i,\n", options.floor.X))
         io.write(string.format("        Y = %i,\n", options.floor.Y))
@@ -289,6 +314,9 @@ local function SaveOptions(options)
         io.write(string.format("    },\n"))
         io.write(string.format("    mags = {\n"))
         io.write(string.format("        EnableWindow = %s,\n", tostring(options.mags.EnableWindow)))
+        io.write(string.format("        HideWhenMenu = %s,\n", tostring(options.mags.HideWhenMenu)))
+        io.write(string.format("        HideWhenSymbolChat = %s,\n",tostring(options.mags.HideWhenSymbolChat)))
+        io.write(string.format("        HideWhenMenuUnavailable = %s,\n", tostring(options.mags.HideWhenMenuUnavailable)))
         io.write(string.format("        Anchor = %i,\n", options.mags.Anchor))
         io.write(string.format("        X = %i,\n", options.mags.X))
         io.write(string.format("        Y = %i,\n", options.mags.Y))
@@ -1071,7 +1099,11 @@ local function present()
     --- Update timer for update throttle
     current_time = pso.get_tick_count()
 
-    if options.aio.EnableWindow then
+    if (options.aio.EnableWindow == true)
+        and (options.aio.HideWhenMenu == false or lib_menu.IsMenuOpen() == false)
+        and (options.aio.HideWhenSymbolChat == false or lib_menu.IsSymbolChatOpen() == false)
+        and (options.aio.HideWhenMenuUnavailable == false or lib_menu.IsMenuUnavailable() == false)
+    then
         local windowName = "Item Reader - AIO"
 
         if options.aio.TransparentWindow == true then
@@ -1110,7 +1142,11 @@ local function present()
 
         options.aio.changed = false
     end
-    if options.floor.EnableWindow then
+    if (options.floor.EnableWindow == true)
+        and (options.floor.HideWhenMenu == false or lib_menu.IsMenuOpen() == false)
+        and (options.floor.HideWhenSymbolChat == false or lib_menu.IsSymbolChatOpen() == false)
+        and (options.floor.HideWhenMenuUnavailable == false or lib_menu.IsMenuUnavailable() == false)
+    then
         local windowName = "Item Reader - Floor"
 
         if options.floor.TransparentWindow == true then
@@ -1149,7 +1185,11 @@ local function present()
 
         options.floor.changed = false
     end
-    if options.mags.EnableWindow then
+    if (options.mags.EnableWindow == true)
+        and (options.mags.HideWhenMenu == false or lib_menu.IsMenuOpen() == false)
+        and (options.mags.HideWhenSymbolChat == false or lib_menu.IsSymbolChatOpen() == false)
+        and (options.mags.HideWhenMenuUnavailable == false or lib_menu.IsMenuUnavailable() == false)
+    then
         local windowName = "Item Reader - Mags"
 
         if options.mags.TransparentWindow == true then
